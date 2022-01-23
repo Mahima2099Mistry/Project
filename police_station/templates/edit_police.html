@@ -1,0 +1,92 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Edit Police</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Edit Police Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Edit Police</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Edit Police Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: green;">{{ msg }}</p>
+                    {% endif %}
+
+                    {% if msg1 %}
+                        <p style="color: red;">{{ msg1 }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'edit_police' police.id %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ police.fname }}" name="fname" id="fname" placeholder="Your First Name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ police.lname }}" name="lname" id="lname" placeholder="Your Last Name" required>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Email is : {{ police.email }}</label>
+                        </div><br>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ police.mobile }}" name="mobile" id="mobile" placeholder="Your Mobile Number" required>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="address" id="address" placeholder="Your Address" required="required">{{ police.address }}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>                    
+                        <div class="control-group">
+                            <input type="password" class="form-control" value="{{ police.password }}" name="password" id="password" placeholder="Your Password" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ police.password }}" name="confirm_password" id="confirm_password" placeholder="Your Confirm Password" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            {% if police.pic %}
+                            <input type="file" class="form-control" value="{{ police.pic.url }}" name="pic" id="pic" />
+                            <p class="help-block text-danger"></p>
+                            {% else %}
+                            <input type="file" class="form-control" name="pic" id="pic" placeholder="pic...." />
+                            <p class="help-block text-danger"></p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Edit Police</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Edit Criminal</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Edit Criminal Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Edit Criminal</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Edit Criminal Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: green;">{{ msg }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'edit_criminal' criminals.id %}" method="POST" enctype="multipart/form-data" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ criminals.criminal_name }}" name="criminal_name" id="criminal_name" placeholder="Enter Criminal Name" data-validation-required-message="Please enter your name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="address" id="address" placeholder="Enter Address" data-validation-required-message="Please enter your message" required>{{ criminals.address }}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ criminals.mobile }}" name="mobile" id="mobile" placeholder="Enter Criminal Mobile Number" data-validation-required-message="Please enter your name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Crime : {{ criminals.crime }}</label>
+                        </div><br>
+                        <div class="control-group">
+                            <textarea class="form-control" name="crime_details" id="crime_details" placeholder="Enter Crime Details" data-validation-required-message="Please enter your message" required>{{ criminals.crime_details }}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            {% if criminals.pic %}
+                            <input type="file" class="form-control" value="{{ criminals.pic.url }}" name="pic" id="pic" data-validation-required-message="Please enter your name" required />
+                            <p class="help-block text-danger"></p>
+                            {% else %}
+                            <input type="file" class="form-control" name="pic" id="pic" placeholder="pic...." data-validation-required-message="Please enter your name" required />
+                            <p class="help-block text-danger"></p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

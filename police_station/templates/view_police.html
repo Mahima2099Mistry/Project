@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>View Police Details</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>View Police Details Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">View Police Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center"><b>View Police Details</b></p>
+        {% if msg %}
+        <p style="color: green;">{{ msg }}</p>
+        {% endif %}
+        <hr>
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Pic</th>
+                    <th>Status</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for one in police %}
+                <tr>
+                    <td>{{ one.fname }} {{ one.lname }}</td>
+                    <td>{{ one.email }}</td>
+                    <td>{{ one.mobile }}</td>
+                    <td>{{ one.address }}</td>
+                    {% if one.pic %}
+                        <td>
+                            <img height="100px" width="100px" src="{{ one.pic.url }}" alt="">
+                        </td>
+                    {% else %}
+                        <td>No Image</td>
+                    {% endif %}
+                    <td>
+                        <a href="{% url 'edit_police' one.id %}"><button class="btn btn-primary" type="button">Edit</button></a>
+                        <a href="{% url 'delete_police' one.id %}"><button class="btn btn-primary" type="button">Delete</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        
+    </div>
+</div>
+
+
+{% endblock %}

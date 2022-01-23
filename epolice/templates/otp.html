@@ -1,0 +1,37 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>OTP Verification</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: red;">{{ msg }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'otp' %}" method="POST" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="uotp" id="fname" placeholder="Your OTP" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <input type="hidden" name='otp' value="{{ otp }}">
+
+                        <div>
+                            <button class="btn btn-custom" type="submit">Verify OTP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

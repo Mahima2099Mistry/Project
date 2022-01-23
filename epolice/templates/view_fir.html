@@ -1,0 +1,76 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>View FIR</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>View FIR Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">View FIR</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center"><b>View FIR</b></p>
+        <hr>
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>Name</th>
+                    <th>FIR Title</th>
+                    <th>Description</th>
+                    <th>Place</th>
+                    <th>Status</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for fir in vfir %}
+                {% if uid.role == 'citizen' %}
+                    <tr>
+                        <td>{{ fir.name }}</td>
+                        <td>{{ fir.fir_title }}</td>
+                        <td>{{ fir.description }}</td>
+                        <td>{{ fir.place }}</td>
+                        {% if fir.status == False %}
+                        <td><button class="btn btn-primary">Solve</button></td>
+                        {% else %}
+                        <td>Solved</td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ fir.name }}</td>
+                        <td>{{ fir.fir_title }}</td>
+                        <td>{{ fir.description }}</td>
+                        <td>{{ fir.place }}</td>
+                        {% if fir.status == False %}
+                        <td><a href="{% url 'solved_fir' fir.id %}"><button class="btn btn-primary" type="button">Solve</button></a></td>
+                        {% else %}
+                        <td>Solved</td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+
+        </table>
+        
+    </div>
+</div>
+
+
+{% endblock %}

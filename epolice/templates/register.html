@@ -1,0 +1,99 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Register</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Register Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Register Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: red;">{{ msg }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="fname" id="fname" placeholder="Your First Name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Your Last Name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Your Mobile Number" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="address" id="address" placeholder="Your Address" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <select name="role" class="form-control" required>
+                                <option value="">-----------</option>
+                                <option value="police">Police</option>
+                                <option value="citizen">Citizen</option>
+                                <option value="commissioner">Commissioner</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Your Confirm Password" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="file" name="pic" id="pic" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Send OTP</button>
+                        </div><br>
+                        <div>
+                            <p>--------------------------------------------------------- OR ----------------------------------------------------</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'login' %}"><button type="button" class="btn btn-custom">Login</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

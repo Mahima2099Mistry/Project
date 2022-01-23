@@ -1,0 +1,71 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Login Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Login Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: red;">{{msg}}</p>
+                    {% endif %}
+
+                    {% if msg1 %}
+                        <p style="color: green;">{{msg1}}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Login</button>
+                            <a href="{% url 'forgot-password' %}"><button type="button" class="btn btn-custom">Forgot Password??</button></a>
+                        </div><br>
+                        <div>
+                            <p>--------------------------------------------------------- OR ----------------------------------------------------</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'register' %}"><button type="button" class="btn btn-custom">Create an Account</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

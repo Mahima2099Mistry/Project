@@ -1,0 +1,90 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Your Profile Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Edit Your profile Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: red;">{{ msg }}</p>
+                    {% endif %}
+
+                    {% if msg1 %}
+                        <p style="color: green;">{{ msg1 }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'profile' %}" method="POST" enctype="multipart/form-data" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ uid.fname }}" name="fname" id="fname" placeholder="Your First Name" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ uid.lname }}" name="lname" id="lname" placeholder="Your Last Name" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Email is : {{ uid.email }}</label>
+                        </div><br>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ uid.mobile }}" name="mobile" id="mobile" placeholder="Your Mobile Number" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="address" id="address" placeholder="Your Address" required="required" data-validation-required-message="Please enter your message">{{ uid.address }}</textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <label style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Your Role : {{ uid.role }}</label>
+                        </div><br>                        
+                        <div class="control-group">
+                            <input type="password" class="form-control" value="{{ uid.password }}" name="password" id="password" placeholder="Your Password" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" value="{{ uid.password }}" name="confirm_password" id="confirm_password" placeholder="Your Confirm Password" required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="file" name="pic" id="pic" value="{{ uid.pic.url }}" data-validation-required-message="Please enter your name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Edit Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

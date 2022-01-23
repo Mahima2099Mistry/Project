@@ -1,0 +1,59 @@
+{% extends 'header.html' %}
+{% load static %}    
+
+{% block title %}
+<title>About Us</title>
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>About Us</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">About Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- About Start -->
+<div class="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about-img">
+                    <img src="{% static 'img/about.jpg' %}" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-header text-left">
+                    <p>About Us</p>
+                    <h2>E-Police Station</h2>
+                </div>
+                <div class="about-content">
+                    <p>
+                        An E-Police Station website is a website that deals specifically with FIRs and Criminals. E-Police station is a generic term for police and government gencies, departments and other organizations in charge of policing Internet in a number of police. The major purposes of Internet Police, depending on the state, are fighting cybercrime, as well as censorship and propaganda.
+                    </p>
+                    <ul>
+                        <li><i class="far fa-check-circle"></i>Add FIRs</li>
+                        <li><i class="far fa-check-circle"></i>Manage FIRs</li>
+                        <li><i class="far fa-check-circle"></i>Manage Criminal Details</li>
+                        <li><i class="far fa-check-circle"></i>Manage Police</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+{% endblock %}

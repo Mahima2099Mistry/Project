@@ -1,0 +1,60 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add Police Station</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Add Police Station Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Add Police Station</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Add Police Station Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: green;">{{ msg }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'add_police_station' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="police_station_name" id="police_station_name" placeholder="Add Police Station Name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="area" id="area" placeholder="Area" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}

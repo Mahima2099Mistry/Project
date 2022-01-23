@@ -1,0 +1,60 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>View Police Station Details</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>View Police Station Details Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">View Police Station Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center"><b>View Police Station Details</b></p>
+        {% if msg %}
+        <p style="color: green;">{{ msg }}</p>
+        {% endif %}
+        <hr>
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>Police Station Name</th>
+                    <th>Area</th>
+                    <th>Status</th>
+                </tr>
+            </thread>
+            <tbody>
+               {% for station in police_station %}
+                    <tr>
+                        <td>{{ station.police_station_name }}</td>
+                        <td>{{ station.area }}</td>
+                        <td>
+                            <a href="{% url 'edit_police_station' station.id %}"><button class="btn btn-primary" type="button">Edit</button></a>
+                            <a href="{% url 'delete_police_station' station.id %}"><button class="btn btn-primary" type="button">Delete</button></a>
+                        </td>
+                    </tr>
+               {% endfor %}
+            </tbody>
+
+        </table>
+        
+    </div>
+</div>
+
+
+{% endblock %}

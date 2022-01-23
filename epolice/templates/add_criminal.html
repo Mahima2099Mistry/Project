@@ -1,0 +1,84 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add Criminal</title>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header Start -->
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Add Criminal Here!!</h2>
+            </div>
+            <div class="col-12">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="">Add Criminal</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Contact Start -->
+<div class="contact">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>ADD Criminal Now!!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <p style="color: green;">{{ msg }}</p>
+                    {% endif %}
+                    <form name="sentMessage" action="{% url 'add_criminal' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="criminal_name" id="criminal_name" placeholder="Enter Criminal Name" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="address" id="address" placeholder="Enter Address" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Criminal Mobile Number" required />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <select name="crime" class="form-control" required>
+                                <option value="">-----Crime-----</option>
+                                <option value="accident">Accident</option>
+                                <option value="fraud">Fraud</option>
+                                <option value="robbery">Robbery</option>
+                                <option value="bullying">Bullying</option>
+                                <option value="cyber_crime">Cyber Crime</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" name="crime_details" id="crime_details" placeholder="Enter Crime Details" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="file" class="form-control" name="pic" id="pic" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-custom" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+{% endblock %}
