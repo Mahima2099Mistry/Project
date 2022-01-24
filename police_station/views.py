@@ -98,15 +98,15 @@ def edit_police(request,id):
 
     if request.method == 'POST':
         if request.POST['password'] == request.POST['confirm_password']:
-            police.fname = request.POST['fname'],
-            police.lname = request.POST['lname'],
-            police.mobile = request.POST['mobile'],
-            police.address = request.POST['address'],
-            police.password = request.POST['password'],
+            police.fname = request.POST['fname']
+            police.lname = request.POST['lname']
+            police.mobile = request.POST['mobile']
+            police.address = request.POST['address']
+            police.password = request.POST['password']
             if 'pic' in request.FILES:
                 police.pic = request.FILES['pic']
             police.save()
-            police = User.objects.all()
+            police = User.objects.filter(role='police')
             return render(request,'view_police.html',{'msg':'Edited Successfully','uid':uid,'police':police})
         else:
             return render(request,'edit_police.html',{'msg1':'Password and Confirm Does not match','uid':uid,'police':police})

@@ -257,7 +257,7 @@ def edit_criminal(request,id):
         criminals.criminal_name = request.POST['criminal_name']
         criminals.address = request.POST['address']
         criminals.mobile = request.POST['mobile']
-        criminals.crime = request.POST['crime']
+        # criminals.crime = request.POST['crime']
         criminals.crime_details = request.POST['crime_details']
         if 'pic' in request.FILES:
             criminals.pic = request.FILES['pic']
