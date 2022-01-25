@@ -117,5 +117,5 @@ def delete_police(request,id):
     uid = User.objects.get(email=request.session['email'])
     police = User.objects.get(id=id)
     police.delete()
-    police = User.objects.all()
+    police = User.objects.filter(role='police')
     return render(request,'view_police.html',{'msg':'Deleted Successfully','uid':uid,'police':police})
