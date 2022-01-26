@@ -112,7 +112,6 @@ def edit_police(request,id):
             return render(request,'edit_police.html',{'msg1':'Password and Confirm Does not match','uid':uid,'police':police})
     
     return render(request,'edit_police.html',{'uid':uid,'police':police})
-    
 
 def delete_police(request,id):
     uid = User.objects.get(email=request.session['email'])
